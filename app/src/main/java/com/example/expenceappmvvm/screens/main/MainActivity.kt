@@ -1,10 +1,12 @@
 package com.example.expenceappmvvm.screens.main
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
+import com.example.expenceappmvvm.R
 import com.example.expenceappmvvm.databinding.ActivityMainBinding
 import org.koin.android.ext.android.get
-import androidx.lifecycle.Observer
 
 class MainActivity : AppCompatActivity() {
 
@@ -13,8 +15,10 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
+        val binding: ActivityMainBinding =
+            DataBindingUtil.setContentView(this, R.layout.activity_main)
         binding.viewmodel = viewModel
+        binding.lifecycleOwner = this
         binding.executePendingBindings()
         viewModel.onCreate(savedInstanceState)
 
@@ -23,7 +27,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun initObsevables() {
         viewModel.backBtn.observe(this, Observer {
-           // init adapters
+            // init adapters
         })
     }
 
