@@ -1,0 +1,93 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+buildscript {
+
+    ext {
+        // Sdk and tools
+        compileSdkVersion = 28
+        minSdkVersion = 21
+        targetSdkVersion = 28
+        buildToolsVersion = "28.0.3"
+
+        // App dependencies
+        gradleVersion = '3.4.2'
+        kotlinVersion = '1.3.31'
+        ktxVersion = '1.0.2'
+        multidex = '1.0.3'
+
+        appCompatVersion = '1.1.0-alpha04'
+        legacySupportV4 = '1.0.0'
+        arch = '1.1.1'
+        rxBinding = '2.0.0'
+        rxJava = '2.2.1'
+        rxAndroid = '2.0.1'
+        gson = '2.8.5'
+        retrofit = '2.4.0'
+        retrofitConverter = '2.3.0'
+        retrofitAdapter = '1.0.0'
+        timber = '4.7.0'
+        viewModel = '2.2.0-alpha01'
+        lifecycle = '1.1.1'
+        koin = '2.0.1'
+        koinArchitecture = '0.9.1'
+        navigation = '2.2.0-rc02'
+        javax = '1.3.2'
+        constraintVersion = '1.1.3'
+        shapeImageView = '0.9.+@aar'
+        cardView = '28.0.0'
+        glide = '4.9.0'
+        junitVersion = '4.12'
+        testRunner = '1.2.0'
+        espressoCore = '3.2.0'
+        interceptor = '3.11.0'
+        discreteScrollview = '1.4.9'
+        viewpager = '1.0.0'
+        fatboyindustrialGson = '1.2.0'
+        coverFlow = 'release-v1.0.5'
+        testfairy = '1.9.14'
+        stetho = '1.5.1'
+        mpChart = 'v3.1.0'
+        exoplayer = '2.8.1'
+        camerax_version = '1.0.0-alpha04'
+        camera_core = '1.0.1'
+        lottie = '3.0.1'
+        tokbox = '2.16.2'
+
+        work_version = '2.2.0'
+        spotifyWeb = '0.4.1'
+        viewPager2 = '1.0.0-beta04'
+        numberPicker = '2.4.8'
+
+        googleServices = '4.3.2'
+        firebase_analitics = '17.2.0'
+        firebase_messenging = '20.0.0'
+
+        crashlitics = '1.31.2'
+        crashSDK = '2.10.1'
+    }
+
+    ext.kotlin_version = '1.3.50'
+    repositories {
+        google()
+        jcenter()
+        
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.5.3'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        jcenter()
+        
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
