@@ -1,11 +1,12 @@
 package com.example.expenceappmvvm.data.database.entities
 
 import androidx.room.Entity
-import androidx.room.PrimaryKey
 
 
-@Entity(tableName = "user")
+@Entity(tableName = "user", primaryKeys = ["id", "email"])
 data class User(
-    @PrimaryKey
-    var id: Long? = 0
+    var id: Long = 0,
+    var userName: String = "",
+    var email: String = "",
+    var password: String = ""
 )
