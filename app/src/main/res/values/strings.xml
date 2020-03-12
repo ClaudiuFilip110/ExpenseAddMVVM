@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">ExpenceAppMVVM</string>
+    <string name="email">Email</string>
+    <string name="let_us_know_more_about_you">Let us know more about you</string>
+    <string name="name">Name</string>
+    <string name="password">Password</string>
+    <string name="register">Register</string>
+    <string name="have_already_an_account">Have already an account?</string>
+    <string name="login">Login</string>
+    <string name="error_username">Username is not valid</string>
+    <string name="error_email">Email is not valid</string>
+    <string name="error_password">Password is not valid</string>
 </resources>

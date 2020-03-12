@@ -37,7 +37,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@color/colorPrimaryDark"
-            android:onClick="@{()-> viewmodel.onBackBtnClicked()}"
+            android:onClick="@{ view -> viewmodel.onBackBtnClicked(view)}"
             android:text="Test Button"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
