@@ -93,4 +93,7 @@ dependencies {
     //Firebase
     implementation "com.google.firebase:firebase-analytics:$firebase_analitics"
     implementation "com.google.firebase:firebase-messaging:$firebase_messenging"
+
+    //Stetho
+    implementation 'com.facebook.stetho:stetho:1.5.1'
 }

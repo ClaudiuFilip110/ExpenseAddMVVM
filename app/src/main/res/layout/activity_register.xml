@@ -15,17 +15,20 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:fitsSystemWindows="true"
         android:background="@color/colorPrimary">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:paddingBottom="@dimen/space_30dp"
             tools:context=".screens.register.RegisterActivity">
 
             <ImageView
-                android:layout_width="@dimen/space_98dp"
-                android:layout_height="@dimen/space_98dp"
+                android:layout_width="@dimen/space_100dp"
+                android:layout_height="@dimen/space_100dp"
                 android:src="@drawable/image"
                 app:layout_constraintBottom_toTopOf="@id/guideline"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -37,7 +40,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                app:layout_constraintGuide_percent="0.25" />
+                app:layout_constraintGuide_percent="0.3" />
 
             <TextView
                 android:id="@+id/instructionText"
@@ -48,7 +51,7 @@
                 android:gravity="center"
                 android:text="@string/let_us_know_more_about_you"
                 android:textColor="@color/colorPrimaryDark"
-                android:textSize="@dimen/text_14sp"
+                android:textSize="@dimen/text_18sp"
                 app:layout_constraintTop_toBottomOf="@id/guideline" />
 
             <com.google.android.material.textfield.TextInputLayout
@@ -118,6 +121,7 @@
                 android:background="@color/white"
                 android:hint="@string/password"
                 android:padding="@dimen/space_6dp"
+                android:inputTextValidation="gygujgjg"
                 android:textColorHint="@color/colorPrimary"
                 app:layout_constraintTop_toBottomOf="@id/textLayoutEmail"
                 app:passwordToggleEnabled="true"
@@ -147,9 +151,9 @@
                 android:backgroundTint="@color/orange"
                 android:fontFamily="@font/montserrat"
                 android:onClick="@{()-> registerViewModel.onRegisterClick()}"
+                android:padding="@dimen/space_8dp"
                 android:paddingStart="@dimen/space_24dp"
                 android:paddingEnd="@dimen/space_24dp"
-                android:padding="@dimen/space_8dp"
                 android:text="@string/register"
                 android:textAllCaps="false"
                 android:textSize="@dimen/text_18sp"
@@ -169,9 +173,11 @@
                 android:text="@string/have_already_an_account"
                 android:textColor="@color/colorPrimaryDark"
                 android:textSize="@dimen/text_16sp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/redirectLogin"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/registerButton" />
+                app:layout_constraintTop_toBottomOf="@id/registerButton"
+                app:layout_constraintVertical_bias="1.0" />
 
             <TextView
                 android:id="@+id/redirectLogin"
