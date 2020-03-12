@@ -42,7 +42,6 @@ class ExpensesApplication : Application() {
 
         initTimber()
         val systemHandler = Thread.getDefaultUncaughtExceptionHandler()
-
     }
 
     private fun initTimber() {
