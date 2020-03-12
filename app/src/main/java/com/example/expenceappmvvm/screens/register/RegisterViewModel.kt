@@ -20,7 +20,6 @@ class RegisterViewModel(
 
     val user = MutableLiveData<User>().apply { value = User() }
     val shouldGoToLogin = SingleLiveEvent<Any>()
-
     val userNameError = MutableLiveData<Boolean>()
     val emailError = MutableLiveData<Boolean>()
     val passwordError = MutableLiveData<Boolean>()
