@@ -1,6 +1,7 @@
 package com.example.expenceappmvvm.screens.main
 
 import android.os.Bundle
+import android.view.View
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.expenceappmvvm.domain.util.SingleLiveEvent
@@ -15,7 +16,7 @@ class MainViewModel(private val compositeDisposable: CompositeDisposable) :ViewM
       //  initViewModel(arguments, filtersApplied)
     }
 
-    fun onBackBtnClicked() {
+    fun onBackBtnClicked(view: View) {
         backBtn.value // backBtn.call()
     }
 

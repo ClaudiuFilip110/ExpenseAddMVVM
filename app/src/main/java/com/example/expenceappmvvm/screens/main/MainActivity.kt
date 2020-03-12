@@ -1,5 +1,7 @@
 package com.example.expenceappmvvm.screens.main
 
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
@@ -33,5 +35,13 @@ class MainActivity : AppCompatActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
+        viewModel.onDestroy()
+    }
+
+    companion object {
+        fun start(activity: Activity) {
+            activity.startActivity(Intent(activity, MainActivity::class.java))
+            activity.finish()
+        }
     }
 }

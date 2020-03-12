@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="registerViewModel"
+            type="com.example.expenceappmvvm.screens.register.RegisterViewModel" />
+
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorPrimary">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/space_30dp"
+            tools:context=".screens.register.RegisterActivity">
+
+            <ImageView
+                android:layout_width="@dimen/space_98dp"
+                android:layout_height="@dimen/space_98dp"
+                android:src="@drawable/image"
+                app:layout_constraintBottom_toTopOf="@id/guideline"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.25" />
+
+            <TextView
+                android:id="@+id/instructionText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/space_16dp"
+                android:fontFamily="@font/montserrat"
+                android:gravity="center"
+                android:text="@string/let_us_know_more_about_you"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="@dimen/text_14sp"
+                app:layout_constraintTop_toBottomOf="@id/guideline" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textLayoutName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/space_24dp"
+                android:layout_marginTop="@dimen/space_18dp"
+                android:layout_marginEnd="@dimen/space_24dp"
+                android:animateLayoutChanges="true"
+                android:background="@color/white"
+                android:hint="@string/name"
+                android:padding="@dimen/space_6dp"
+                android:textColorHint="@color/colorPrimary"
+                app:hintAnimationEnabled="true"
+                app:layout_constraintTop_toBottomOf="@id/instructionText">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/textInputName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/text_10sp"
+                    android:layout_marginEnd="@dimen/text_10sp"
+                    android:background="@null"
+                    android:fontFamily="@font/roboto"
+                    android:inputType="textPersonName"
+                    android:maxLines="1"
+                    android:padding="@dimen/text_12sp"
+                    android:text="@={registerViewModel.user.userName}"
+                    android:textColor="@color/cardview_dark_background"
+                    android:textSize="@dimen/text_16sp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textLayoutEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/space_24dp"
+                android:background="@color/white"
+                android:hint="@string/email"
+                android:padding="@dimen/space_6dp"
+                android:textColorHint="@color/colorPrimary"
+                app:layout_constraintTop_toBottomOf="@id/textLayoutName">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/textInputEmail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/text_10sp"
+                    android:layout_marginEnd="@dimen/text_10sp"
+                    android:background="@null"
+                    android:fontFamily="@font/roboto"
+                    android:inputType="textEmailAddress"
+                    android:maxLines="1"
+                    android:padding="@dimen/text_12sp"
+                    android:text="@={registerViewModel.user.email}"
+                    android:textColor="@color/cardview_dark_background"
+                    android:textSize="@dimen/text_16sp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textLayoutPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/space_24dp"
+                android:background="@color/white"
+                android:hint="@string/password"
+                android:padding="@dimen/space_6dp"
+                android:textColorHint="@color/colorPrimary"
+                app:layout_constraintTop_toBottomOf="@id/textLayoutEmail"
+                app:passwordToggleEnabled="true"
+                app:passwordToggleTint="@color/colorPrimary">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/textInputPassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/space_10dp"
+                    android:layout_marginEnd="@dimen/space_5dp"
+                    android:background="@null"
+                    android:fontFamily="@font/roboto"
+                    android:inputType="textPassword"
+                    android:maxLines="1"
+                    android:padding="@dimen/text_12sp"
+                    android:text="@={registerViewModel.user.password}"
+                    android:textColor="@color/cardview_dark_background"
+                    android:textSize="@dimen/text_16sp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <Button
+                android:id="@+id/registerButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_10dp"
+                android:backgroundTint="@color/orange"
+                android:fontFamily="@font/montserrat"
+                android:onClick="@{()-> registerViewModel.onRegisterClick()}"
+                android:paddingStart="@dimen/space_24dp"
+                android:paddingEnd="@dimen/space_24dp"
+                android:padding="@dimen/space_8dp"
+                android:text="@string/register"
+                android:textAllCaps="false"
+                android:textSize="@dimen/text_18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/textLayoutPassword" />
+
+
+            <TextView
+                android:id="@+id/alreadyAccountText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/space_20dp"
+                android:layout_marginTop="@dimen/space_32dp"
+                android:fontFamily="@font/roboto"
+                android:padding="@dimen/space_10dp"
+                android:text="@string/have_already_an_account"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="@dimen/text_16sp"
+                app:layout_constraintEnd_toStartOf="@+id/redirectLogin"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/registerButton" />
+
+            <TextView
+                android:id="@+id/redirectLogin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/space_20dp"
+                android:fontFamily="@font/roboto"
+                android:onClick="@{()-> registerViewModel.goToLoginClick()}"
+                android:padding="@dimen/space_10dp"
+                android:text="@string/login"
+                android:textColor="@color/orange"
+                android:textSize="@dimen/text_16sp"
+                app:layout_constraintBottom_toBottomOf="@+id/alreadyAccountText"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/alreadyAccountText"
+                app:layout_constraintTop_toTopOf="@+id/alreadyAccountText" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+</layout>
