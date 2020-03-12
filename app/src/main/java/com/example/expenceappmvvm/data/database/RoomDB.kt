@@ -21,5 +21,4 @@ class RoomDB(context: Context) {
         private val DATABASE_NAME = "expenses-manager-database"
 
     }
-
 }
