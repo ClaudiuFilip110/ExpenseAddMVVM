@@ -121,6 +121,7 @@
                 android:background="@color/white"
                 android:hint="@string/password"
                 android:padding="@dimen/space_6dp"
+                android:inputTextValidation="gygujgjg"
                 android:textColorHint="@color/colorPrimary"
                 app:layout_constraintTop_toBottomOf="@id/textLayoutEmail"
                 app:passwordToggleEnabled="true"

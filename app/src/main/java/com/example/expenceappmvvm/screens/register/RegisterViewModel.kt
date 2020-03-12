@@ -47,7 +47,7 @@ class RegisterViewModel(
         }
     }
 
-    fun inputTextValidation(
+    fun inputTextChangeListener(
         textInput: TextInputEditText,
         type: String
     ) {

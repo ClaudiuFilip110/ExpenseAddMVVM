@@ -26,38 +26,31 @@ class RegisterActivity : AppCompatActivity() {
 
         initTextInputListeners()
         observeShouldGoToLogin()
-        observeUsernameError()
-        observeEmailError()
-        observePasswordError()
+        observeRegisterErrors()
     }
 
     private fun initTextInputListeners() {
-        viewModel.inputTextValidation(textInputName, InputTypesEnum.NAME.name)
-        viewModel.inputTextValidation(textInputEmail, InputTypesEnum.EMAIL.name)
-        viewModel.inputTextValidation(textInputPassword, InputTypesEnum.PASSWORD.name)
+        viewModel.inputTextChangeListener(textInputName, InputTypesEnum.NAME.name)
+        viewModel.inputTextChangeListener(textInputEmail, InputTypesEnum.EMAIL.name)
+        viewModel.inputTextChangeListener(textInputPassword, InputTypesEnum.PASSWORD.name)
     }
 
-    private fun observeUsernameError() {
+    private fun observeRegisterErrors() {
         viewModel.userNameError.observe(this, Observer {
             textLayoutName.isErrorEnabled = it
             if (it) textLayoutName.error = getString(R.string.error_username)
         })
-    }
 
-    private fun observeEmailError() {
         viewModel.emailError.observe(this, Observer {
             textLayoutEmail.isErrorEnabled = it
             if (it) textLayoutEmail.error = getString(R.string.error_email)
 
         })
-    }
 
-    private fun observePasswordError() {
         viewModel.passwordError.observe(this, Observer {
             textLayoutPassword.isErrorEnabled = it
             if (it) textLayoutPassword.error = getString(R.string.error_password)
         })
-
     }
 
     private fun observeShouldGoToLogin() {

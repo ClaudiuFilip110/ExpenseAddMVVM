@@ -32,7 +32,7 @@ class ExpensesApplication : Application() {
         }
 
         initTimber()
-        Stetho.initializeWithDefaults(this);
+        Stetho.initializeWithDefaults(this)
     }
 
     private fun initTimber() {
