@@ -1,9 +1,9 @@
 package com.example.expenceappmvvm.data.database.repository
 
-import androidx.lifecycle.LiveData
 import com.example.expenceappmvvm.data.database.AppDatabase
 import com.example.expenceappmvvm.data.database.entities.User
 import io.reactivex.Observable
+import io.reactivex.Single
 
 class UserRepository(private val db: AppDatabase) {
 
@@ -15,4 +15,7 @@ class UserRepository(private val db: AppDatabase) {
         return db.userDao().getUserByEmail(email)
     }
 
+    fun getUserById(id: Long): Single<User> {
+        return db.userDao().getUserById(id)
+    }
 }
