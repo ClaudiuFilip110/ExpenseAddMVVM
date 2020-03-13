@@ -10,6 +10,8 @@ import com.example.expenceappmvvm.R
 import com.example.expenceappmvvm.databinding.ActivityLoginBinding
 import com.example.expenceappmvvm.domain.util.InputTypesEnum
 import com.example.expenceappmvvm.screens.main.MainActivity
+import com.example.expenceappmvvm.screens.register.RegisterActivity
+import kotlinx.android.synthetic.main.activity_login.*
 import org.koin.android.ext.android.get
 
 class LoginActivity : AppCompatActivity() {
@@ -20,16 +22,37 @@ class LoginActivity : AppCompatActivity() {
         DataBindingUtil.setContentView<ActivityLoginBinding>(this, R.layout.activity_login).apply {
             viewModel = this@LoginActivity.viewModel
             lifecycleOwner = this@LoginActivity
-            passwordInputType = InputTypesEnum.PASSWORD
-            emailInputType = InputTypesEnum.EMAIL
         }
-
-        observeOnLogin()
+        initObservers()
+        initTextChangeListeners()
     }
 
-    private fun observeOnLogin() {
-        viewModel.goToMainActivity.observe(this, Observer {
+    private fun initTextChangeListeners() {
+        viewModel.inputTextChangeListener(loginEmailInput, InputTypesEnum.EMAIL.name)
+        viewModel.inputTextChangeListener(loginPasswordInput, InputTypesEnum.EMAIL.name)
+    }
+
+    private fun initObservers() {
+        viewModel.invalidPassword.observe(this, Observer {
+            loginPassword.isErrorEnabled = it
+            if (it) {
+                loginPassword.error = getString(R.string.error_email)
+            }
+        })
+
+        viewModel.invalidEmail.observe(this, Observer {
+            loginEmail.isErrorEnabled = it
+            if (it) {
+                loginEmail.error = getString(R.string.error_email)
+            }
+        })
+
+        viewModel.shouldGoToMain.observe(this, Observer {
             MainActivity.start(this)
+        })
+
+        viewModel.shouldGoToRegisterViewModel.observe(this, Observer {
+            RegisterActivity.start(this)
         })
     }
 
@@ -40,8 +63,8 @@ class LoginActivity : AppCompatActivity() {
 
     companion object {
         fun starLogin(activity: Activity) {
-            val intent = Intent(activity, LoginActivity::class.java)
-            activity.startActivity(intent)
+            activity.startActivity(Intent(activity, LoginActivity::class.java))
+            activity.finish()
         }
     }
 }

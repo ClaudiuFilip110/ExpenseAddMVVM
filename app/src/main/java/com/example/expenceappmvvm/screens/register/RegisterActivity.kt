@@ -1,5 +1,7 @@
 package com.example.expenceappmvvm.screens.register
 
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
@@ -25,8 +27,7 @@ class RegisterActivity : AppCompatActivity() {
             }
 
         initTextInputListeners()
-        observeShouldGoToLogin()
-        observeRegisterErrors()
+        initObservers()
     }
 
     private fun initTextInputListeners() {
@@ -35,7 +36,7 @@ class RegisterActivity : AppCompatActivity() {
         viewModel.inputTextChangeListener(textInputPassword, InputTypesEnum.PASSWORD.name)
     }
 
-    private fun observeRegisterErrors() {
+    private fun initObservers() {
         viewModel.userNameError.observe(this, Observer {
             textLayoutName.isErrorEnabled = it
             if (it) textLayoutName.error = getString(R.string.error_username)
@@ -51,16 +52,21 @@ class RegisterActivity : AppCompatActivity() {
             textLayoutPassword.isErrorEnabled = it
             if (it) textLayoutPassword.error = getString(R.string.error_password)
         })
-    }
 
-    private fun observeShouldGoToLogin() {
         viewModel.shouldGoToLogin.observe(this, Observer {
             LoginActivity.starLogin(this)
         })
     }
 
+
     override fun onDestroy() {
         super.onDestroy()
         viewModel.onDestroy()
+    }
+
+    companion object {
+        fun start(activity: Activity) {
+            activity.startActivity(Intent(activity, RegisterActivity::class.java))
+        }
     }
 }
