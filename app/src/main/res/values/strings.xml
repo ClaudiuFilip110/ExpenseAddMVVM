@@ -23,6 +23,7 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="my_budget">My Budget</string>
+    <string name="expenses">Expenses</string>
     <string name="log_out">Logout</string>
     <string name="save">Save</string>
 
