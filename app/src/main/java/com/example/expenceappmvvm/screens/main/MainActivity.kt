@@ -33,7 +33,6 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main).apply {
             viewModel = mainViewModel
             lifecycleOwner = this@MainActivity
@@ -48,7 +47,6 @@ class MainActivity : AppCompatActivity() {
         setTabLayoutListener()
     }
 
-
     override fun onBackPressed() {
         if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
             closerDrawer()
@@ -57,7 +55,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    override fun onDestroy() {
+    override fun onDestroy() {`
         super.onDestroy()
         mainViewModel.onDestroy()
     }
@@ -136,6 +134,7 @@ class MainActivity : AppCompatActivity() {
                     indicator.animation = outToRightAnimation()
                     viewScaleUp(bottomTabLayout.getTabAt(position)!!.view)
                     viewScaleDown(bottomTabLayout.getTabAt(position - 1)!!.view)
+
                 }
             }
         })

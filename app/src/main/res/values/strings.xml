@@ -26,5 +26,11 @@
     <string name="expenses">Expenses</string>
     <string name="log_out">Logout</string>
     <string name="save">Save</string>
+    <string name="budget_information">Budget information</string>
+    <string name="details">Details</string>
+    <string name="current_balance">Current Balance</string>
+    <string name="today_expenses">Today Expenses</string>
+    <string name="week_expenses">This week expenses</string>
+    <string name="month_expenses">This month expenses</string>
 
 </resources>

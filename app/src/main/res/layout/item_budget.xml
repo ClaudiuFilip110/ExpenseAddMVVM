@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="firstItem"
+            type="Boolean" />
+
+        <variable
+            name="budgetName"
+            type="String" />
+
+        <variable
+            name="budgetValue"
+            type="String" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/border_orange"
+        android:backgroundTint="@color/white"
+        android:orientation="horizontal"
+        android:padding="@dimen/space_10dp"
+        app:applyTintColor="@{firstItem}"
+        app:balanceValue="@{budgetValue}">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="9"
+            android:fontFamily="@font/roboto"
+            android:text="@{budgetName}"
+            android:textColor="@color/cardview_dark_background"
+            android:textSize="@dimen/text_15sp"
+            app:applyTextColor="@{firstItem}"
+            app:balanceValue="@{budgetValue}"
+            tools:text="Current balance" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:fontFamily="@font/roboto_bold"
+            android:gravity="end"
+            android:text="@{budgetValue}"
+            android:textColor="@color/cardview_dark_background"
+            android:textSize="@dimen/text_15sp"
+            app:applyTextColor="@{true}"
+            app:balanceValue="@{budgetValue}"
+            tools:text="1080.00" />
+
+    </LinearLayout>
+</layout>
