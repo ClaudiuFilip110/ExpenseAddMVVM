@@ -27,7 +27,7 @@ class SplashViewModel(private val sharedPreferences: PreferencesService) : ViewM
     }
 
     private fun showLoginScreen(splashActivity: SplashActivity) {
-        LoginActivity.starLogin(splashActivity)
+        LoginActivity.start(splashActivity)
         splashActivity.finish()
     }
 

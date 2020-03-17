@@ -2,6 +2,7 @@ package com.example.expenceappmvvm.data.database.repository
 
 import com.example.expenceappmvvm.data.database.AppDatabase
 import com.example.expenceappmvvm.data.database.entities.User
+import com.example.expenceappmvvm.data.database.entities.UserWithExpenses
 import io.reactivex.Observable
 import io.reactivex.Single
 
@@ -17,5 +18,8 @@ class UserRepository(private val db: AppDatabase) {
 
     fun getUserById(id: Long): Single<User> {
         return db.userDao().getUserById(id)
+    }
+    fun getUserWithExpenses(userId: Long): Observable<List<UserWithExpenses>> {
+        return db.userDao().getUsersWithExpenses(userId)
     }
 }

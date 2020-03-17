@@ -68,6 +68,7 @@ dependencies {
     implementation "com.jakewharton.rxbinding2:rxbinding-design:$rxBinding"
     implementation "com.jakewharton.rxbinding2:rxbinding-support-v4:$rxBinding"
     implementation "com.jakewharton.rxbinding2:rxbinding-appcompat-v7:$rxBinding"
+    implementation "com.github.tbruyelle:rxpermissions:0.10.2"
 
     //Network
     implementation "com.squareup.okhttp3:logging-interceptor:$interceptor"

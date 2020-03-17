@@ -5,6 +5,10 @@
     <data>
 
         <variable
+            name="screenTitle"
+            type="String" />
+
+        <variable
             name="viewModel"
             type="com.example.expenceappmvvm.screens.main.MainViewModel" />
     </data>
@@ -23,7 +27,8 @@
 
             <include
                 layout="@layout/toolbar_layout"
-                app:mainViewModel="@{viewModel}" />
+                app:mainViewModel="@{viewModel}"
+                app:screenTitle="@{screenTitle}" />
         </com.google.android.material.appbar.AppBarLayout>
 
         <androidx.viewpager2.widget.ViewPager2

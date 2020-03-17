@@ -62,9 +62,8 @@ class LoginActivity : AppCompatActivity() {
     }
 
     companion object {
-        fun starLogin(activity: Activity) {
+        fun start(activity: Activity) {
             activity.startActivity(Intent(activity, LoginActivity::class.java))
-            activity.finish()
         }
     }
 }

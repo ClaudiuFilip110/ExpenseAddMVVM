@@ -3,6 +3,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.expenceappmvvm">
 
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:name=".application.ExpensesApplication"
         android:allowBackup="true"
@@ -30,6 +35,10 @@
 
         <activity
             android:name=".screens.login.LoginActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".screens.expenses.AddExpensesActivity"
             android:screenOrientation="portrait" />
 
         <meta-data

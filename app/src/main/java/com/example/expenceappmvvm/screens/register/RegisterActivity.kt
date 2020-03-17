@@ -54,7 +54,7 @@ class RegisterActivity : AppCompatActivity() {
         })
 
         viewModel.shouldGoToLogin.observe(this, Observer {
-            LoginActivity.starLogin(this)
+            LoginActivity.start(this)
         })
     }
 
