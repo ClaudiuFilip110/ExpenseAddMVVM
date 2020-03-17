@@ -18,4 +18,13 @@
     <string name="no_account">Have no account?</string>
     <string name="register">Register</string>
     <string name="invalid_credentials">Invalid credentials</string>
+    <string name="main_page">Main Page</string>
+    <string name="converter">Converter</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="my_budget">My Budget</string>
+    <string name="expenses">Expenses</string>
+    <string name="log_out">Logout</string>
+    <string name="save">Save</string>
+
 </resources>
