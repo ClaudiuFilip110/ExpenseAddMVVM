@@ -17,6 +17,7 @@ import com.example.expenceappmvvm.domain.util.UIUtils.inFromRightAnimation
 import com.example.expenceappmvvm.domain.util.UIUtils.outToRightAnimation
 import com.example.expenceappmvvm.domain.util.UIUtils.viewScaleDown
 import com.example.expenceappmvvm.domain.util.UIUtils.viewScaleUp
+import com.example.expenceappmvvm.screens.expenses.AddExpensesActivity
 import com.example.expenceappmvvm.screens.login.LoginActivity
 import com.example.expenceappmvvm.screens.main.adapter.ViewPagerAdapter
 import com.google.android.material.tabs.TabLayout
@@ -33,9 +34,9 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main).apply {
             viewModel = mainViewModel
+            toolbarScreenTitle = getString(R.string.my_budget)
             lifecycleOwner = this@MainActivity
         }
 
@@ -47,7 +48,6 @@ class MainActivity : AppCompatActivity() {
         calculateIndicatorWidth()
         setTabLayoutListener()
     }
-
 
     override fun onBackPressed() {
         if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
@@ -136,6 +136,7 @@ class MainActivity : AppCompatActivity() {
                     indicator.animation = outToRightAnimation()
                     viewScaleUp(bottomTabLayout.getTabAt(position)!!.view)
                     viewScaleDown(bottomTabLayout.getTabAt(position - 1)!!.view)
+
                 }
             }
         })
@@ -151,11 +152,11 @@ class MainActivity : AppCompatActivity() {
         })
 
         mainViewModel.shouldGoToAddActivity.observe(this, Observer {
-            // Open Add Activity
+            AddExpensesActivity.start(this)
         })
 
         mainViewModel.shouldGoToLoginActivity.observe(this, Observer {
-            LoginActivity.starLogin(this)
+            LoginActivity.start(this)
         })
     }
 

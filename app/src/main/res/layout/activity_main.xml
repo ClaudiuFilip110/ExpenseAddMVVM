@@ -8,6 +8,10 @@
         <import type="android.view.View" />
 
         <variable
+            name="toolbarScreenTitle"
+            type="String" />
+
+        <variable
             name="viewModel"
             type="com.example.expenceappmvvm.screens.main.MainViewModel" />
 
@@ -33,6 +37,7 @@
                 layout="@layout/content_main"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                app:screenTitle="@{toolbarScreenTitle}"
                 app:viewModel="@{viewModel}" />
         </LinearLayout>
 

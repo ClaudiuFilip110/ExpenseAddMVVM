@@ -4,8 +4,11 @@
     <color name="colorPrimaryDark">#030303</color>
     <color name="colorAccent">#01A39D</color>
     <color name="red">#FD1313</color>
+    <color name="red_transparent">#33E05858</color>
     <color name="orange">#F57314</color>
     <color name="light_gray">#CBCBCB</color>
     <color name="green_dark">#009789</color>
+    <color name="green_transparent">#24009688</color>
     <color name="white">#FFFFFF</color>
+    <color name="gray">#F5F3F3</color>
 </resources>

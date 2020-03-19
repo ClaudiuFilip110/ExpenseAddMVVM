@@ -24,7 +24,22 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="my_budget">My Budget</string>
     <string name="expenses">Expenses</string>
+    <string name="my_expense">My Expenses</string>
     <string name="log_out">Logout</string>
     <string name="save">Save</string>
+    <string name="date">Date</string>
+    <string name="amount">Amount</string>
+    <string name="amount_hint">Amount spent </string>
+    <string name="category">Category</string>
+    <string name="more_info">More information</string>
+    <string name="invalid_date_error">Invalid date</string>
+    <string name="invalid_amount_error">Invalid amount</string>
+    <string name="permissions_required">Permissions needed to be dranted !</string>
+    <string name="budget_information">Budget information</string>
+    <string name="details">Details</string>
+    <string name="current_balance">Current Balance</string>
+    <string name="today_expenses">Today Expenses</string>
+    <string name="week_expenses">This week expenses</string>
+    <string name="month_expenses">This month expenses</string>
 
 </resources>

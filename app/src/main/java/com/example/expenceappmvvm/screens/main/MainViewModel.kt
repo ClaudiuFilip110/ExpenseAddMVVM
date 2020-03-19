@@ -10,12 +10,11 @@ import com.example.expenceappmvvm.domain.util.rx.disposeBy
 import io.reactivex.disposables.CompositeDisposable
 
 class MainViewModel(
-        private val userRepo: UserRepository,
-        private val rxSchedulers: AppRxSchedulers,
-        private val preferencesService: PreferencesService,
-        private val compositeDisposable: CompositeDisposable
+    private val userRepo: UserRepository,
+    private val rxSchedulers: AppRxSchedulers,
+    private val preferencesService: PreferencesService,
+    private val compositeDisposable: CompositeDisposable
 ) : ViewModel() {
-
     val shouldGoToAddActivity = SingleLiveEvent<Any>()
     val shouldGoToLoginActivity = SingleLiveEvent<Any>()
     val shouldGoToConvertActivity = SingleLiveEvent<Any>()
@@ -28,10 +27,15 @@ class MainViewModel(
     private fun getUserBySavedId() {
         preferencesService.getUserID()?.let {
             userRepo.getUserById(it)
-                    .observeOn(rxSchedulers.androidUI())
-                    .doOnSuccess { user -> userName.value = user.userName }
-                    .subscribe()
-                    .disposeBy(compositeDisposable)
+                .subscribeOn(rxSchedulers.background())
+                .observeOn(rxSchedulers.androidUI())
+                .doOnSuccess { user ->
+                    userName.value = user.userName
+                }
+                .subscribe({}, {
+                    logOutItemClick()
+                })
+                .disposeBy(compositeDisposable)
         }
     }
 

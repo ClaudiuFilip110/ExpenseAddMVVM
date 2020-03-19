@@ -43,4 +43,5 @@ object UIUtils {
         view.animate().scaleX(1f).setDuration(150).start()
         view.animate().scaleY(1f).setDuration(150).start()
     }
+
 }

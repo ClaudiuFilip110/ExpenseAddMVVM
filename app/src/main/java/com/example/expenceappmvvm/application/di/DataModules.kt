@@ -1,6 +1,7 @@
 package com.example.expenceappmvvm.application.di
 
 import com.example.expenceappmvvm.data.database.RoomDB
+import com.example.expenceappmvvm.data.database.repository.ExpensesRepository
 import com.example.expenceappmvvm.data.database.repository.UserRepository
 import com.example.expenceappmvvm.data.prefs.PreferencesService
 import org.koin.android.ext.koin.androidContext
@@ -16,5 +17,6 @@ val preferencesModule: Module = module {
 }
 
 val dataModule: Module = module {
-     single { UserRepository(get()) }
+    single { UserRepository(get()) }
+    single { ExpensesRepository(get()) }
 }
