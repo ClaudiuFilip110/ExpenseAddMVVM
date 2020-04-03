@@ -55,7 +55,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    override fun onDestroy() {`
+    override fun onDestroy() {
         super.onDestroy()
         mainViewModel.onDestroy()
     }
@@ -116,7 +116,9 @@ class MainActivity : AppCompatActivity() {
         bottomTabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabReselected(tab: TabLayout.Tab?) {}
 
-            override fun onTabUnselected(tab: TabLayout.Tab?) {}
+            override fun onTabUnselected(tab: TabLayout.Tab?) {
+                viewScaleDown(tab!!.view)
+            }
 
             override fun onTabSelected(tab: TabLayout.Tab) {
                 (indicator.layoutParams as LinearLayout.LayoutParams).apply {
@@ -124,18 +126,13 @@ class MainActivity : AppCompatActivity() {
                     indicator.layoutParams = this
                 }
 
-                val position = tab.position
-                if (position == 0) {
-                    indicator.animation = inFromRightAnimation()
-                    viewScaleUp(bottomTabLayout.getTabAt(position)!!.view)
-                    viewScaleDown(bottomTabLayout.getTabAt(position + 1)!!.view)
-
-                } else if (position == 1) {
-                    indicator.animation = outToRightAnimation()
-                    viewScaleUp(bottomTabLayout.getTabAt(position)!!.view)
-                    viewScaleDown(bottomTabLayout.getTabAt(position - 1)!!.view)
-
+                indicator.animation = if (tab.position == 0) {
+                    inFromRightAnimation()
+                } else {
+                    outToRightAnimation()
                 }
+
+                viewScaleUp(tab.view)
             }
         })
     }
