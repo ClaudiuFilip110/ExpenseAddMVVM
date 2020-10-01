@@ -27,8 +27,8 @@ class AddExpensesViewModel(
     private val preferences: PreferencesService,
     private val rxSchedulers: AppRxSchedulers,
     private val expensesRepo: ExpensesRepository,
-    private val compositeDisposable: CompositeDisposable
-) : ViewModel() {
+    private val compositeDisposable: CompositeDisposable) : ViewModel() {
+
     val expense = MutableLiveData<ExpensesObservableViewModel>().apply {
         value = ExpensesObservableViewModel().apply {
             category = CategoryEnum.INCOME.getStringValue()

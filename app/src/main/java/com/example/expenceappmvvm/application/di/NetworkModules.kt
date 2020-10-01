@@ -1,6 +1,7 @@
 package com.example.expenceappmvvm.application.di
 
 import com.example.expenceappmvvm.BuildConfig
+import com.example.expenceappmvvm.data.api.mock.WorkoutApiMock
 import com.google.gson.Gson
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import com.example.expenceappmvvm.domain.util.rx.AppRxSchedulers
@@ -31,7 +32,7 @@ val restModule: Module = module {
     single {
         val retrofit: Retrofit = get()
         if (BuildConfig.FLAVOR == "mock" || BuildConfig.FLAVOR == "developSkipMirrorSetup") {
-           // WorkoutApiMock(androidContext())
+            WorkoutApiMock(androidContext())
         } else {
            // retrofit.create(WorkoutApi::class.java)
         }
