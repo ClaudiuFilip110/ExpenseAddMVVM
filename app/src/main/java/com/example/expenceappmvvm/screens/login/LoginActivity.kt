@@ -10,9 +10,12 @@ import com.example.expenceappmvvm.databinding.ActivityLoginBinding
 import com.example.expenceappmvvm.domain.util.InputTypesEnum
 import com.example.expenceappmvvm.domain.util.ValidatorUtil
 import com.example.expenceappmvvm.domain.util.extensions.toast
+import com.example.expenceappmvvm.screens.main.MainActivity
+import com.example.expenceappmvvm.screens.register.RegisterActivity
 import com.example.expenceappmvvm.screens.splash.SplashActivity
 import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.activity_register.*
+import kotlinx.coroutines.MainScope
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class LoginActivity : AppCompatActivity() {
@@ -42,16 +45,25 @@ class LoginActivity : AppCompatActivity() {
 
     private fun initObservers() {
         viewModel.emailError.observe(this, Observer {
-            if (it) login_email_layout.error = getString(R.string.error_email)
+            if (!it)
+                login_email_layout.error = getString(R.string.error_email)
+            else
+                login_email_layout.isErrorEnabled = false
         })
 
         viewModel.passwordError.observe(this, Observer {
-            if (it) login_password_layout.error = getString(R.string.error_password)
+            if (!it)
+                login_password_layout.error = getString(R.string.error_password)
+            else
+                login_password_layout.isErrorEnabled = false
         })
 
         viewModel.shouldGoToMain.observe(this, Observer {
-            baseContext.toast("Change screen to main instead of splash")
-            SplashActivity.start(this)
+            MainActivity.start(this)
+        })
+
+        viewModel.shouldGoToRegister.observe(this, Observer {
+            RegisterActivity.start(this)
         })
     }
 

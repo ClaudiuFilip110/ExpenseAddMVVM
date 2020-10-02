@@ -20,6 +20,7 @@ class LoginViewModel() : ViewModel() {
 
     val user = MutableLiveData<User>().apply { value = User() }
     val shouldGoToMain = SingleLiveEvent<Any>()
+    val shouldGoToRegister = SingleLiveEvent<Any>()
     val emailError = MutableLiveData<Boolean>()
     val passwordError = MutableLiveData<Boolean>()
 
@@ -27,5 +28,9 @@ class LoginViewModel() : ViewModel() {
         emailError.value = ValidatorUtil.isValidEmail(user.value?.email)
         passwordError.value = ValidatorUtil.isValidPassword(user.value?.password)
         return emailError.value!! && passwordError.value!!
+    }
+
+    fun clickOnRegister() {
+        shouldGoToRegister.call()
     }
 }
