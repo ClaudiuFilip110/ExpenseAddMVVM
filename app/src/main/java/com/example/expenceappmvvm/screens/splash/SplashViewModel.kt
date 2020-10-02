@@ -2,9 +2,17 @@ package com.example.expenceappmvvm.screens.splash
 
 import androidx.lifecycle.ViewModel
 import com.example.expenceappmvvm.data.prefs.PreferencesService
+import com.example.expenceappmvvm.screens.login.LoginActivity
+import java.util.*
+import kotlin.concurrent.timerTask
 
-class SplashViewModel(private val sharedPreferences: PreferencesService) : ViewModel() {
+class SplashViewModel() : ViewModel() {
+    fun showNextScreen(splashActivity: SplashActivity) {
+        val timer = Timer()
+        timer.schedule(timerTask { LoginActivity.start(splashActivity) }, DELAY)
+    }
+
     companion object {
-        private const val SPLASH_DELAY = 2000L
+        const val DELAY = 2000L
     }
 }

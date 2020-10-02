@@ -1,6 +1,8 @@
 package com.example.expenceappmvvm.domain.util
 
+import android.util.Patterns
 import java.util.regex.Pattern
+import kotlin.coroutines.coroutineContext
 
 object ValidatorUtil {
 
@@ -12,7 +14,7 @@ object ValidatorUtil {
     fun isValidPassword(password: String?): Boolean {
         if (password == null) return false
         return Pattern.matches(
-            "((?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[~`!@#$^&*()_+={}|:'<>,.?/%]).{6,20})",
+            "^(?=.*[0-9])(?=.*[a-z])(?=\\S+\$).{4,}\$",
             password
         )
     }
