@@ -30,6 +30,7 @@
                 android:layout_width="@dimen/space_100dp"
                 android:layout_height="@dimen/space_100dp"
                 android:src="@drawable/image"
+                imageResource="@dra"
                 app:layout_constraintBottom_toTopOf="@id/guideline"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

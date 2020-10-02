@@ -9,13 +9,12 @@ import androidx.lifecycle.Observer
 import com.example.expenceappmvvm.R
 import com.example.expenceappmvvm.databinding.ActivityRegisterBinding
 import com.example.expenceappmvvm.domain.util.InputTypesEnum
-import com.example.expenceappmvvm.screens.login.LoginActivity
 import kotlinx.android.synthetic.main.activity_register.*
-import org.koin.android.ext.android.get
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class RegisterActivity : AppCompatActivity() {
 
-    private val viewModel: RegisterViewModel = get()
+    private val viewModel: RegisterViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,7 +53,7 @@ class RegisterActivity : AppCompatActivity() {
         })
 
         viewModel.shouldGoToLogin.observe(this, Observer {
-            LoginActivity.start(this)
+//            LoginActivity.start(this)
         })
     }
 
