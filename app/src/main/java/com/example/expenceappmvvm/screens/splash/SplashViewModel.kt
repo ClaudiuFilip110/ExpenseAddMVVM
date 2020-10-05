@@ -31,7 +31,6 @@ class SplashViewModel(
 
     fun startLogin(splashActivity: SplashActivity) {
         val timer = Timer()
-        //TODO: You can use SingleLiveEvent and start Login Activity from activity
         timer.schedule(timerTask { LoginActivity.start(splashActivity) }, DELAY)
     }
 

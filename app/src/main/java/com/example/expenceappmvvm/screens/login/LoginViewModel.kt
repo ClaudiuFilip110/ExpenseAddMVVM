@@ -33,8 +33,7 @@ class LoginViewModel(
     fun userValidationIsCorrect(): Boolean {
         emailError.value = ValidatorUtil.isValidEmail(user.value?.email)
         passwordError.value = ValidatorUtil.isValidPassword(user.value?.password)
-        //TODO: don't use !!
-        return emailError.value!! && passwordError.value!!
+        return emailError.value == true && passwordError.value == true
     }
 
     fun clickOnRegister() {
