@@ -80,7 +80,6 @@
                     android:inputType="textPersonName"
                     android:maxLines="1"
                     android:padding="@dimen/text_12sp"
-                    android:text="@={registerViewModel.user.userName}"
                     android:textColor="@color/cardview_dark_background"
                     android:textSize="@dimen/text_16sp" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -107,7 +106,6 @@
                     android:inputType="textEmailAddress"
                     android:maxLines="1"
                     android:padding="@dimen/text_12sp"
-                    android:text="@={registerViewModel.user.email}"
                     android:textColor="@color/cardview_dark_background"
                     android:textSize="@dimen/text_16sp" />
 
@@ -137,23 +135,22 @@
                     android:inputType="textPassword"
                     android:maxLines="1"
                     android:padding="@dimen/text_12sp"
-                    android:text="@={registerViewModel.user.password}"
                     android:textColor="@color/cardview_dark_background"
                     android:textSize="@dimen/text_16sp" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <Button
                 android:id="@+id/registerButton"
-                android:layout_width="wrap_content"
+                android:layout_width="250dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/space_10dp"
                 android:backgroundTint="@color/orange"
                 android:fontFamily="@font/montserrat"
-                android:onClick="@{()-> registerViewModel.onRegisterClick()}"
                 android:padding="@dimen/space_8dp"
                 android:paddingStart="@dimen/space_24dp"
                 android:paddingEnd="@dimen/space_24dp"
                 android:text="@string/register"
+                android:background="@drawable/custom_button"
                 android:textAllCaps="false"
                 android:textSize="@dimen/text_18sp"
                 app:layout_constraintEnd_toEndOf="parent"

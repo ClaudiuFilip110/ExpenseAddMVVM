@@ -2,67 +2,59 @@ package com.example.expenceappmvvm.screens.register
 
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.expenceappmvvm.data.database.entities.User
 import com.example.expenceappmvvm.data.database.repository.UserRepository
-import com.example.expenceappmvvm.domain.util.InputTypesEnum
-import com.example.expenceappmvvm.domain.util.SecurityUtils
-import com.example.expenceappmvvm.domain.util.SingleLiveEvent
-import com.example.expenceappmvvm.domain.util.ValidatorUtil
+import com.example.expenceappmvvm.domain.util.*
+import com.example.expenceappmvvm.domain.util.rx.AppRxSchedulers
+import com.example.expenceappmvvm.domain.util.rx.disposeBy
 import com.google.android.material.textfield.TextInputEditText
+import io.reactivex.Observable
 import io.reactivex.disposables.CompositeDisposable
 
 class RegisterViewModel(
     private val compositeDisposable: CompositeDisposable,
-    private val userRepository: UserRepository
+    private val userRepository: UserRepository,
+    private val rxSchedulers: AppRxSchedulers
 ) : ViewModel() {
 
     val user = MutableLiveData<User>().apply { value = User() }
-    val shouldGoToLogin = SingleLiveEvent<Any>()
     val userNameError = MutableLiveData<Boolean>()
     val emailError = MutableLiveData<Boolean>()
     val passwordError = MutableLiveData<Boolean>()
+    val shouldGoToLogin = SingleLiveEvent<Boolean>()
 
-    private fun checkUserRegisterValidation(): Boolean {
-        userNameError.value = !(ValidatorUtil.isValidName(user.value?.userName))
-        emailError.value = !(ValidatorUtil.isValidEmail(user.value?.email))
-        passwordError.value = !(ValidatorUtil.isValidPassword(user.value?.password))
-
-        return !userNameError.value!! && !emailError.value!! && !passwordError.value!!
+    fun checkUserRegisterValidation(): Boolean {
+        userNameError.value = ValidatorUtil.isValidName(user.value?.userName)
+        emailError.value = ValidatorUtil.isValidEmail(user.value?.email)
+        passwordError.value = ValidatorUtil.isValidPassword(user.value?.password)
+        return userNameError.value == true && emailError.value == true
+                && passwordError.value == true
     }
 
-    private fun addUserToDatabase() {
-        user.value?.let {
-            it.password = SecurityUtils.encrypt(it.password!!)
-            userRepository.insertUser(it)
-        }
+    fun deleteUsersFromDatabase() {
+        userRepository.deleteUsers()
     }
 
-    fun onRegisterClick() {
-        if (checkUserRegisterValidation()) {
-            addUserToDatabase()
-            goToLoginClick()
-        }
-    }
+    fun addUserToDatabase() {
+        val userToInsert = user.value
+        if (userToInsert != null) {
+            userToInsert.password?.let { userToInsert.password = SecurityUtils.encrypt(it) }
 
-    fun inputTextChangeListener(
-        textInput: TextInputEditText,
-        type: String
-    ) {
-        textInput.addTextChangedListener(object : TextWatcher {
-            override fun afterTextChanged(s: Editable?) {
-                when (type) {
-                    InputTypesEnum.NAME.name -> userNameError.value = false
-                    InputTypesEnum.EMAIL.name -> emailError.value = false
-                    InputTypesEnum.PASSWORD.name -> passwordError.value = false
+            Observable.just(Constants.EMPTY_STRING)
+                .observeOn(rxSchedulers.background())
+                .map {
+                    userRepository.insertUser(userToInsert)
                 }
-            }
-
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
-
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
-        })
+                .observeOn(rxSchedulers.androidUI())
+                .doOnError {
+                    Log.d("userRepository","Could not insert the user in the db")
+                }
+                .subscribe()
+                .disposeBy(compositeDisposable)
+        }
     }
 
     fun goToLoginClick() {

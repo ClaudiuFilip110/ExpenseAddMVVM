@@ -2,6 +2,7 @@ package com.example.expenceappmvvm.domain.util
 
 
 object Constants {
+    const val EMPTY_STRING = ""
     const val EMAIL = "Email"
     const val PASSWORD = "Password"
     const val BALANCE_DEFAULT_AMOUNT = 0.0
