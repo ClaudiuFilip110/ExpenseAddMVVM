@@ -10,7 +10,8 @@ import io.reactivex.Single
 
 class UserRepository(private val db: AppDatabase) {
 
-    //----------------------------------------------------------------------USERS
+    //Users
+    //#region
     fun insertUser(user: User) {
         db.userDao().insert(user)
     }
@@ -29,8 +30,9 @@ class UserRepository(private val db: AppDatabase) {
     fun getUserWithExpenses(userId: Long): Observable<List<UserWithExpenses>> {
         return db.userDao().getUsersWithExpenses(userId)
     }
-
-    //----------------------------------------------------------------------AutoLogin
+    //#endregion
+    //AutoLogin
+    //#region
     fun insertAutoLogin(user: AutoLoginUser) {
         db.autologinDao().insertUser(user)
     }
@@ -42,4 +44,5 @@ class UserRepository(private val db: AppDatabase) {
     fun getAutoLogin(): Single<AutoLoginUser> {
         return db.autologinDao().getUser()
     }
+    //#endregion
 }

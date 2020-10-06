@@ -45,7 +45,7 @@ class RegisterViewModel(
 
             Observable.just(Constants.EMPTY_STRING)
                 .observeOn(rxSchedulers.background())
-                .map {
+                .doOnNext {
                     userRepository.insertUser(userToInsert)
                 }
                 .observeOn(rxSchedulers.androidUI())
@@ -57,11 +57,7 @@ class RegisterViewModel(
         }
     }
 
-    fun goToLoginClick() {
-        shouldGoToLogin.call()
-    }
-
-    fun onDestroy() {
+    override fun onCleared() {
         compositeDisposable.clear()
     }
 }

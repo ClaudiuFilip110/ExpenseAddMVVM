@@ -50,17 +50,12 @@ class LoginViewModel(
             .observeOn(rxSchedulers.androidUI())
             .doOnNext {
                 checkIfPasswordsMatch(it)
-                if (passwordsMatch.value == true) {
-                    var autoLogin = AutoLoginUser()
-                    autoLogin.email = it.email
-                    autoLogin.password = it.password.toString()
-                    autoLogin.name = it.userName.toString()
-                    userRepository.insertAutoLogin(autoLogin)
-                }
             }
-            .observeOn(rxSchedulers.androidUI())
-            .doOnError {
-                Log.d("AutoLogin", "autoLogin failed" + it.message)
+            .observeOn(rxSchedulers.background())
+            .doOnNext {
+                if (passwordsMatch.value == true) {
+                    userRepository.insertAutoLogin(convertToAutoLoginUser(it))
+                }
             }
             .observeOn(rxSchedulers.androidUI())
             //save to ViewModel user
@@ -71,6 +66,7 @@ class LoginViewModel(
                 }
             }
             .doOnError {
+                Log.d("AutoLogin", "autoLogin failed" + it.message)
                 userCredentialsAreValid.value = false
             }
             .subscribe({
@@ -80,23 +76,12 @@ class LoginViewModel(
             .disposeBy(compositeDisposable)
     }
 
-    private fun saveUserForAutologin(it: User?) {
-        if (it != null) {
-            val autoLogin = (it as AutoLoginUser)
-            Observable.just(Constants.EMPTY_STRING)
-                .observeOn(rxSchedulers.background())
-                .map { userRepository.insertAutoLogin(autoLogin) }
-                .observeOn(rxSchedulers.androidUI())
-                .doOnError {
-                    Log.d("AutologinUser", "error before subscribe + ${it.message}")
-                }
-                .subscribe({
-                    Log.d("AutologinUser", "insertion succesful")
-                }, {
-                    Log.d("AutologinUser", "insertion error -> " + it.message)
-                })
-                .disposeBy(compositeDisposable)
-        }
+    private fun convertToAutoLoginUser(it: User): AutoLoginUser {
+        var autoLogin = AutoLoginUser()
+        autoLogin.email = it.email
+        autoLogin.password = it.password.toString()
+        autoLogin.name = it.userName.toString()
+        return autoLogin
     }
 
     private fun checkIfPasswordsMatch(it: User?) {

@@ -41,9 +41,13 @@ class RegisterActivity : AppCompatActivity() {
 //            viewModel.deleteUsersFromDatabase()
             if (viewModel.checkUserRegisterValidation()) {
                 viewModel.addUserToDatabase()
-                viewModel.goToLoginClick()
+                goToLogin()
             }
         }
+    }
+
+    private fun goToLogin() {
+        viewModel.shouldGoToLogin.call()
     }
 
     private fun initObservers() {
@@ -77,12 +81,6 @@ class RegisterActivity : AppCompatActivity() {
                 textLayoutPassword.isErrorEnabled = false
             }
         })
-    }
-
-
-    override fun onDestroy() {
-        super.onDestroy()
-        viewModel.onDestroy()
     }
 
     companion object {

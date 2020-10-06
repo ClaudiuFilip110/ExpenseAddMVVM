@@ -181,7 +181,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/space_20dp"
                 android:fontFamily="@font/roboto"
-                android:onClick="@{()-> registerViewModel.goToLoginClick()}"
                 android:padding="@dimen/space_10dp"
                 android:text="@string/login"
                 android:textColor="@color/orange"
