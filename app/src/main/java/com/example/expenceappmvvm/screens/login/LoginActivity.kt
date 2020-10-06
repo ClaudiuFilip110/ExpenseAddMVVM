@@ -2,20 +2,16 @@ package com.example.expenceappmvvm.screens.login
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import com.example.expenceappmvvm.R
 import com.example.expenceappmvvm.databinding.ActivityLoginBinding
-import com.example.expenceappmvvm.domain.util.InputTypesEnum
-import com.example.expenceappmvvm.domain.util.ValidatorUtil
 import com.example.expenceappmvvm.domain.util.extensions.toast
 import com.example.expenceappmvvm.screens.main.MainActivity
 import com.example.expenceappmvvm.screens.register.RegisterActivity
-import com.example.expenceappmvvm.screens.splash.SplashActivity
 import kotlinx.android.synthetic.main.activity_login.*
-import kotlinx.android.synthetic.main.activity_register.*
-import kotlinx.coroutines.MainScope
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class LoginActivity : AppCompatActivity() {
@@ -38,7 +34,7 @@ class LoginActivity : AppCompatActivity() {
             viewModel.user.value?.email = login_email_text.text.toString()
             viewModel.user.value?.password = login_password_text.text.toString()
             if (viewModel.userValidationIsCorrect()) {
-                viewModel.shouldGoToMain.call()
+                viewModel.user.value?.email?.let { it1 -> viewModel.getUserFromDatabase(it1) }
             }
         }
     }
@@ -58,12 +54,21 @@ class LoginActivity : AppCompatActivity() {
                 login_password_layout.isErrorEnabled = false
         })
 
-        viewModel.shouldGoToMain.observe(this, Observer {
-            MainActivity.start(this)
-        })
-
         viewModel.shouldGoToRegister.observe(this, Observer {
             RegisterActivity.start(this)
+        })
+
+        viewModel.userCredentialsAreValid.observe(this, Observer {
+            if(it)
+                MainActivity.start(this)
+            else
+                this.toast("Invalid credentials")
+        })
+
+        viewModel.passwordsMatch.observe(this, Observer {
+            if(!it) {
+                this.toast("Incorrect password")
+            }
         })
     }
 

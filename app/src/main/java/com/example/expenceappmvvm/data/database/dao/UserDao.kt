@@ -3,6 +3,7 @@ package com.example.expenceappmvvm.data.database.dao
 import androidx.room.*
 import com.example.expenceappmvvm.data.database.entities.User
 import com.example.expenceappmvvm.data.database.entities.UserWithExpenses
+import io.reactivex.Flowable
 import io.reactivex.Observable
 import io.reactivex.Single
 
@@ -12,7 +13,7 @@ interface UserDao {
     fun insert(user: User)
 
     @Query("Select * from user where email=:email")
-    fun getUserByEmail(email: String): Observable<User>
+    fun getUserByEmail(email: String): Single<User>
 
     @Query("Select * from user where id=:userId")
     fun getUserById(userId: Long): Single<User>
@@ -20,4 +21,7 @@ interface UserDao {
     @Transaction
     @Query("Select * from user where id=:userId")
     fun getUsersWithExpenses(userId: Long): Observable<List<UserWithExpenses>>
+
+    @Query("DELETE from user")
+    fun deleteUsers()
 }
