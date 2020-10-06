@@ -41,5 +41,9 @@
     <string name="today_expenses">Today Expenses</string>
     <string name="week_expenses">This week expenses</string>
     <string name="month_expenses">This month expenses</string>
+    <string name="open">open</string>
+    <string name="close">close</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>
