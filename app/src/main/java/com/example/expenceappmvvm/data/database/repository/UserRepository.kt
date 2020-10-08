@@ -1,6 +1,7 @@
 package com.example.expenceappmvvm.data.database.repository
 
 import com.example.expenceappmvvm.data.database.AppDatabase
+import com.example.expenceappmvvm.data.database.entities.Action
 import com.example.expenceappmvvm.data.database.entities.AutoLoginUser
 import com.example.expenceappmvvm.data.database.entities.User
 import com.example.expenceappmvvm.data.database.entities.UserWithExpenses
@@ -9,9 +10,7 @@ import io.reactivex.Observable
 import io.reactivex.Single
 
 class UserRepository(private val db: AppDatabase) {
-
-    //Users
-    //#region
+    //#region Users
     fun insertUser(user: User) {
         db.userDao().insert(user)
     }
@@ -31,8 +30,7 @@ class UserRepository(private val db: AppDatabase) {
         return db.userDao().getUsersWithExpenses(userId)
     }
     //#endregion
-    //AutoLogin
-    //#region
+    //#region AutoLogin
     fun insertAutoLogin(user: AutoLoginUser) {
         db.autologinDao().insertUser(user)
     }
@@ -43,6 +41,11 @@ class UserRepository(private val db: AppDatabase) {
 
     fun getAutoLogin(): Single<AutoLoginUser> {
         return db.autologinDao().getUser()
+    }
+
+    //region Action
+    fun insertAction(action: Action) {
+        db.expenseDao().insertExpense(action)
     }
     //#endregion
 }

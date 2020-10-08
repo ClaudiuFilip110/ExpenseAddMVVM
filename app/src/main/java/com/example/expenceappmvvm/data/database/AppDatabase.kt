@@ -7,11 +7,11 @@ import com.example.expenceappmvvm.data.database.dao.AutologinUserDao
 import com.example.expenceappmvvm.data.database.dao.ExpensesDao
 import com.example.expenceappmvvm.data.database.dao.UserDao
 import com.example.expenceappmvvm.data.database.entities.AutoLoginUser
-import com.example.expenceappmvvm.data.database.entities.Expense
+import com.example.expenceappmvvm.data.database.entities.Action
 import com.example.expenceappmvvm.data.database.entities.User
 
 
-@Database(entities = [User::class, Expense::class, AutoLoginUser::class], version = 3)
+@Database(entities = [User::class, Action::class, AutoLoginUser::class], version = 4)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun userDao(): UserDao
     abstract fun expenseDao(): ExpensesDao
