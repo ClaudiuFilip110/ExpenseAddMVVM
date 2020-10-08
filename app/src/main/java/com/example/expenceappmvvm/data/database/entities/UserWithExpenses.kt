@@ -6,8 +6,8 @@ import androidx.room.Relation
 data class UserWithExpenses(
     @Embedded
     var user: User,
-    @Relation(parentColumn = "id", entityColumn = "userId", entity = Expense::class)
-    var expenses: List<Expense>
+    @Relation(parentColumn = "id", entityColumn = "userId", entity = Action::class)
+    var expens: List<Action>
 ) {
     constructor() : this(User(), mutableListOf())
 }

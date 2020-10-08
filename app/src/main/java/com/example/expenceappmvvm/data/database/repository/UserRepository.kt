@@ -1,6 +1,7 @@
 package com.example.expenceappmvvm.data.database.repository
 
 import com.example.expenceappmvvm.data.database.AppDatabase
+import com.example.expenceappmvvm.data.database.entities.Action
 import com.example.expenceappmvvm.data.database.entities.AutoLoginUser
 import com.example.expenceappmvvm.data.database.entities.User
 import com.example.expenceappmvvm.data.database.entities.UserWithExpenses
@@ -40,6 +41,11 @@ class UserRepository(private val db: AppDatabase) {
 
     fun getAutoLogin(): Single<AutoLoginUser> {
         return db.autologinDao().getUser()
+    }
+
+    //region Action
+    fun insertAction(action: Action) {
+        db.expenseDao().insertExpense(action)
     }
     //#endregion
 }

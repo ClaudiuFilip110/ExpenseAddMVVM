@@ -12,6 +12,7 @@ import androidx.lifecycle.Observer
 import com.example.expenceappmvvm.R
 import com.example.expenceappmvvm.databinding.ActivityMainBinding
 import com.example.expenceappmvvm.domain.util.extensions.toast
+import com.example.expenceappmvvm.screens.actions.ActionActivity
 import com.example.expenceappmvvm.screens.main.budget.BudgetFragment
 import com.example.expenceappmvvm.screens.main.expenses.ExpensesFragment
 import com.example.expenceappmvvm.screens.register.RegisterActivity
@@ -42,6 +43,10 @@ class MainActivity : AppCompatActivity() {
     private fun initObservers() {
         viewModel.toolbarText.observe(this, Observer {
 
+        })
+
+        viewModel.addAction.observe(this, Observer {
+            ActionActivity.start(this)
         })
     }
 

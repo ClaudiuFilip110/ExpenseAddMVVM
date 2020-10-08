@@ -1,5 +1,7 @@
 package com.example.expenceappmvvm.domain.util
 
+import org.threeten.bp.LocalDate
+import org.threeten.bp.LocalDateTime
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -79,5 +81,29 @@ object DateAndTimeUtils {
             clearData(this, System.currentTimeMillis())
             set(Calendar.DAY_OF_YEAR, getActualMinimum(Calendar.DAY_OF_YEAR))
         }.timeInMillis
+    }
+
+    fun convertFromStringToDate(date: String, time: String): Date {
+        try {
+            return SimpleDateFormat("yyyy-MM-dd HH:mm").parse("$date $time")
+        } catch (e: Exception) {
+            try {
+                return SimpleDateFormat("yyyy-MM-dd").parse(date)
+            } catch (e: Exception) {
+            }
+        }
+        return Date()
+    }
+
+    fun convertDate(date: Date): LocalDateTime {
+        val pattern = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss")
+        val d = pattern.format(date)
+        return LocalDateTime.parse(d)
+    }
+
+    fun convertSimpleDate(date: Date): LocalDate {
+        val pattern = SimpleDateFormat("yyyy-MM-dd")
+        val d = pattern.format(date)
+        return LocalDate.parse(d)
     }
 }

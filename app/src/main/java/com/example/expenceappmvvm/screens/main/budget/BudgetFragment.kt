@@ -36,6 +36,7 @@ class BudgetFragment : Fragment() {
                 budgetViewModel = viewModel
             }
         initObservers()
+
         return v.root
     }
 

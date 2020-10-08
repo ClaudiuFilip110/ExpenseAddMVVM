@@ -4,6 +4,7 @@ import android.app.Application
 import com.example.expenceappmvvm.BuildConfig
 import com.example.expenceappmvvm.application.di.*
 import com.facebook.stetho.Stetho
+import com.jakewharton.threetenabp.AndroidThreeTen
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 import timber.log.Timber
@@ -33,6 +34,7 @@ class ExpensesApplication : Application() {
 
         initTimber()
         Stetho.initializeWithDefaults(this)
+        AndroidThreeTen.init(this)
     }
 
     private fun initTimber() {

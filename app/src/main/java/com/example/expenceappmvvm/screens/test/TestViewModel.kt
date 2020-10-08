@@ -1,22 +1,17 @@
-package com.example.expenceappmvvm.screens.main
+package com.example.expenceappmvvm.screens.test
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.expenceappmvvm.data.database.repository.UserRepository
-import com.example.expenceappmvvm.domain.util.SingleLiveEvent
 import com.example.expenceappmvvm.domain.util.rx.AppRxSchedulers
 import io.reactivex.disposables.CompositeDisposable
 
-class MainViewModel(
+
+class TestViewModel(
     private val compositeDisposable: CompositeDisposable,
     private val userRepository: UserRepository,
     private val rxSchedulers: AppRxSchedulers
 ) : ViewModel() {
-    val toolbarText = MutableLiveData<String>()
-    val bottomNav = MutableLiveData<Boolean>()
-    val addAction = SingleLiveEvent<Boolean>()
-
-    fun clickAddAction() {
-        addAction.call()
-    }
+    var userName = MutableLiveData<String>()
+    var password = MutableLiveData<String>()
 }

@@ -60,6 +60,7 @@ dependencies {
     api "androidx.lifecycle:lifecycle-viewmodel-ktx:$viewModel"
     annotationProcessor "android.arch.lifecycle:compiler:$lifecycle"
     implementation "com.fatboyindustrial.gson-jodatime-serialisers:gson-jodatime-serialisers:$fatboyindustrialGson"
+    implementation 'com.jakewharton.threetenabp:threetenabp:1.2.4'
 
     //RxJava
     implementation "io.reactivex.rxjava2:rxandroid:$rxAndroid"
