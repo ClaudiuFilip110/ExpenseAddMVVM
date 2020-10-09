@@ -5,6 +5,7 @@ import com.example.expenceappmvvm.screens.login.LoginViewModel
 import com.example.expenceappmvvm.screens.main.MainViewModel
 import com.example.expenceappmvvm.screens.main.budget.BudgetViewModel
 import com.example.expenceappmvvm.screens.main.expenses.ExpensesViewModel
+import com.example.expenceappmvvm.screens.main.expenses.viewpager.ViewPagerViewModel
 import com.example.expenceappmvvm.screens.register.RegisterViewModel
 import com.example.expenceappmvvm.screens.splash.SplashViewModel
 import com.example.expenceappmvvm.screens.test.TestViewModel
@@ -21,4 +22,5 @@ val viewModelsModule: Module = module {
     viewModel { ExpensesViewModel(get(), get(), get()) }
     viewModel { ActionViewModel(get(), get(), get()) }
     viewModel { TestViewModel(get(), get(), get()) }
+    viewModel { ViewPagerViewModel(get(), get(), get()) }
 }

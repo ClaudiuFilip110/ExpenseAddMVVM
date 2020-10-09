@@ -138,7 +138,8 @@
                         android:gravity="bottom"
                         android:paddingLeft="30dp"
                         android:paddingBottom="50dp"
-                        android:text="Logout" />
+                        android:text="Logout"
+                        android:onClick="@{() -> mainViewModel.clickOnLogin()}"/>
                 </LinearLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>
         </com.google.android.material.navigation.NavigationView>

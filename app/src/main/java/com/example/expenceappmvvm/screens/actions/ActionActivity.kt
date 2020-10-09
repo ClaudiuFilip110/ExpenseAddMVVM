@@ -62,7 +62,8 @@ class ActionActivity : AppCompatActivity() {
                 viewModel.insertActionInDB(it)
                 this.toast("Action added to db")
                 finish()
-            }
+            } else
+                this.toast("Cannot insert action, incorrect values in fields")
         })
 
         viewModel.clickDelete.observe(this, Observer {
@@ -75,7 +76,7 @@ class ActionActivity : AppCompatActivity() {
     }
 
     private fun actionValidated(): Boolean {
-        if (viewModel.action.value?.amount != 0.0)
+        if (viewModel.action.value?.amount != 0.0 && viewModel.action.value?.userId != -1L)
             return true
         return false
     }
@@ -108,9 +109,8 @@ class ActionActivity : AppCompatActivity() {
 
     private fun initAction(): Action {
         return Action().apply {
-            //TODO: action.userId -> se ia automat din baza de date, dar deocamadata il lasam hard codat
-            userId = 1
-//            amount = toDouble(viewModel.amount.value.toString())
+            userId = ActionViewModel.lastUserId
+            amount = toDouble(viewModel.amount.value.toString())
             date = DateAndTimeUtils.convertFromStringToDate(calendarDate, timePicker)
             category = viewModel.category.value + ""
             details = viewModel.details.value + ""

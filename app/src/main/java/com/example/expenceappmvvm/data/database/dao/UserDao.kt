@@ -24,4 +24,7 @@ interface UserDao {
 
     @Query("DELETE from user")
     fun deleteUsers()
+
+    @Query("SELECT id FROM user ORDER BY id DESC")
+    fun lastId(): Single<Long>
 }

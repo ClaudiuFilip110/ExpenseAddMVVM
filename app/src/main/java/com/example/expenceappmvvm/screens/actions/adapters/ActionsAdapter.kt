@@ -52,6 +52,8 @@ class ActionsAdapter(
         fun bind(item: CategoryModel) {
             binding.action = item
 
+            binding.actionCard
+
             itemView.setOnClickListener {
                 mActions.find { it.isSelected }
                     .let {

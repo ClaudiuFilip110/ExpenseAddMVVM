@@ -13,6 +13,7 @@ import com.example.expenceappmvvm.R
 import com.example.expenceappmvvm.databinding.ActivityMainBinding
 import com.example.expenceappmvvm.domain.util.extensions.toast
 import com.example.expenceappmvvm.screens.actions.ActionActivity
+import com.example.expenceappmvvm.screens.login.LoginActivity
 import com.example.expenceappmvvm.screens.main.budget.BudgetFragment
 import com.example.expenceappmvvm.screens.main.expenses.ExpensesFragment
 import com.example.expenceappmvvm.screens.register.RegisterActivity
@@ -47,6 +48,12 @@ class MainActivity : AppCompatActivity() {
 
         viewModel.addAction.observe(this, Observer {
             ActionActivity.start(this)
+        })
+
+        viewModel.logOut.observe(this, Observer {
+            viewModel.deleteAutoLoginUser()
+            LoginActivity.start(this)
+            finish()
         })
     }
 

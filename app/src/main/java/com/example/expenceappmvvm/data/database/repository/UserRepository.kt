@@ -47,5 +47,13 @@ class UserRepository(private val db: AppDatabase) {
     fun insertAction(action: Action) {
         db.expenseDao().insertExpense(action)
     }
+
+    fun getLastId(): Single<Long> {
+        return db.userDao().lastId()
+    }
+
+    fun getActions(): Single<List<Action>> {
+        return db.expenseDao().getActions()
+    }
     //#endregion
 }
